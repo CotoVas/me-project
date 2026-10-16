@@ -1,0 +1,78 @@
+.new-book {
+  width: 100%;
+  max-width: 440px;
+  margin: 40px auto; 
+  background: #2a2f38;
+  border: 3px solid #000;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 6px 6px 0 0 #000;
+  font-family: system-ui, -apple-system, sans-serif;
+  text-align: center; 
+}
+
+.new-book__header {
+  background: #dfab31;
+  border-bottom: 3px solid #000;
+  padding: 20px 24px;
+  border-radius: 37px 37px 0 0;
+}
+
+.new-book__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  font-style: italic;
+  line-height: 1.2;
+  color: #000;
+}
+
+.new-book__subtitle {
+  margin: 6px 0 0;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  color: #000;
+}
+
+.new-book__body {
+  padding: 24px;
+}
+
+.new-book__name,
+.new-book__author {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: italic;
+  color: #cfd6e3;
+}
+
+.new-book__rating {
+  margin: 10px 0 0;
+  font-size: 16px;
+  font-style: italic;
+  color: #f5c518;
+}
+
+.new-book__price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;  
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.new-book__price-old {
+  font-size: 16px;
+  font-style: italic;
+  color: #8a93a3;
+  text-decoration: line-through;
+}
+
+.new-book__price-new {
+  font-size: 26px;
+  font-weight: 800;
+  font-style: italic;
+  color: #e53935;
+}
