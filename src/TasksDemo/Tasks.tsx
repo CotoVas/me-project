@@ -8,9 +8,7 @@ interface Task {
 }
 
 const initialTasks: Task[] = [
-  { id: 1, title: 'Прочитать «1984»', done: true },
-  { id: 2, title: 'Написать конспект', done: false },
-  { id: 3, title: 'Сдать проект', done: false },
+  { id: 1, title: 'ТЕСТОВАЯ ЗАДАЧА', done: false },
 ];
 
 const Section = styled.section`
