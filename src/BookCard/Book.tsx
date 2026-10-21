@@ -1,18 +1,9 @@
 import styled from '@emotion/styled';
-
-export type BookStatus = 'done' | 'reading' | 'want';
-export interface Book {
-  id: number;
-  title: string;
-  author: string;
-  status: BookStatus;
-  rating?: number;
-  note?: string;
-  coverUrl?: string;
-}
+import type { Book, BookStatus } from '../types/book';
 
 interface BookCardProps {
   book: Book;
+  deleteBook: (id: number) => void;
 }
 
 const statusGradients: Record<BookStatus, string> = {
@@ -51,7 +42,7 @@ const Badge = styled.span<{ status: BookStatus }>`
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: ${({ status }) => statusColors[status]};;
+    background: ${({ status }) => statusColors[status]};
     margin-right: 6px;
     vertical-align: middle;
   }
@@ -144,20 +135,10 @@ const DeleteButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-&:hover {
-  background: #3a3a3a;
-}
-&:active {
-  background: #1a1a1a;
-}
-&:focus-visible {
-  outline: 2px solid #8b735f;
-  outline-offset: 2px;
-}
-&:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+  &:hover { background: #3a3a3a; }
+  &:active { background: #1a1a1a; }
+  &:focus-visible { outline: 2px solid #8b735f; outline-offset: 2px; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
 `;
 
 const statusText = {
@@ -166,35 +147,38 @@ const statusText = {
   done: 'Прочитано',
 } satisfies Record<Book['status'], string>;
 
-export function BookCard({ book }: BookCardProps) {
+export function BookCard({ book, deleteBook }: BookCardProps) {
   const rating = book.rating ?? 0;
   const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
 
-
-//😺===😺\\
-
-
   return (
-  <Card>
-    <Cover status={book.status}>
-      {book.coverUrl && <CoverImage src={book.coverUrl} alt={book.title} />}
-      <CoverTitle length={book.title.length}>{book.title}</CoverTitle>
-    </Cover>
-    <Author>{book.author}</Author>
-    <Badge status={book.status}>{statusText[book.status]}</Badge>
+    <Card>
+      <Cover status={book.status}>
+        {book.coverUrl && <CoverImage src={book.coverUrl} alt={book.title} />}
+        <CoverTitle length={book.title.length}>{book.title}</CoverTitle>
+      </Cover>
+      <Author>{book.author}</Author>
+      <Badge status={book.status}>{statusText[book.status]}</Badge>
 
-    {book.status === 'done' ? (
-      <>
-        <p>
-          <Stars>{stars}</Stars>
-          <RatingValue>{rating}/5</RatingValue>
-        </p>
-        {book.note && <Note>{book.note}</Note>}
-      </>
-    ) : (
-      <Hint>Оценка появится после прочтения</Hint>
-    )}
-    <DeleteButton type="button" aria-label="Удалить книгу">🗑️</DeleteButton>
-  </Card>
+      {book.status === 'done' ? (
+        <>
+          <p>
+            <Stars>{stars}</Stars>
+            <RatingValue>{rating}/5</RatingValue>
+          </p>
+          {book.note && <Note>{book.note}</Note>}
+        </>
+      ) : (
+        <Hint>Оценка появится после прочтения</Hint>
+      )}
+      
+      <DeleteButton 
+        type="button" 
+        aria-label="Удалить книгу"
+        onClick={() => deleteBook(book.id)}
+      >
+        🗑️
+      </DeleteButton>
+    </Card>
   );
 }

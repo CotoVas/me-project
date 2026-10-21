@@ -1,5 +1,5 @@
-import type { Book } from '../BookCard/Book';
 import styled from '@emotion/styled';
+import type { Book } from '../types/book';
 
 interface StatsProps {
   books: Book[];
@@ -34,9 +34,9 @@ const Value = styled.span`
 
 export const Stats = ({ books }: StatsProps) => {
   const total = books.length;
-    const done = books.filter((b) => b.status === 'done').length;
-    const reading = books.filter((b) => b.status === 'reading').length;
-    const want = books.filter((b) => b.status === 'want').length;
+  const done = books.filter((b) => b.status === 'done').length;
+  const reading = books.filter((b) => b.status === 'reading').length;
+  const want = books.filter((b) => b.status === 'want').length;
 
   return (
     <StatsSection>
@@ -49,7 +49,7 @@ export const Stats = ({ books }: StatsProps) => {
           <Label>Прочитано</Label>
           <Value>{done}</Value>
         </StatCard>
-                <StatCard>
+        <StatCard>
           <Label>Читаю</Label>
           <Value>{reading}</Value>
         </StatCard>
@@ -60,7 +60,5 @@ export const Stats = ({ books }: StatsProps) => {
       </StatsWrapper>
     </StatsSection>
   );
-
 };
-
 

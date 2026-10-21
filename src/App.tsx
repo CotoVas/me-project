@@ -1,15 +1,22 @@
 import './App.css';
+import { useState } from 'react';
 import { BookList } from './components/BookList';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { NewBook } from './NewBook/NewBook';
 import { Stats } from './Stats/Stats';
-import { books } from './components/BookList';
+import { initialBooks } from './data/book'; 
+import { TasksDemo } from './TasksDemo/Tasks'; 
+import type { Book } from './types/book';
 import type { NewBookType } from './types/NewBookType';
 
 
-function App() {
 
+function App() {
+  const [books, setBooks] = useState<Book[]>(initialBooks);
+  const deleteBook = (id: number) => {
+    setBooks((prev) => prev.filter((book) => book.id !== id));
+  };
 
   const demoBook: NewBookType = {
     id: 1,
@@ -30,7 +37,8 @@ function App() {
         <NewBook book={demoBook} /> 
       </main>
       <Stats books={books} />
-      <BookList />
+      <BookList books={books} deleteBook={deleteBook} />
+      <TasksDemo />
       <Footer />
     </>
   );
