@@ -9,6 +9,7 @@ import { initialBooks } from './data/book';
 import { TasksDemo } from './TasksDemo/Tasks'; 
 import type { Book } from './types/book';
 import type { NewBookType } from './types/NewBookType';
+import { BookForm } from './BookForm/BookForm';
 
 
 
@@ -38,6 +39,7 @@ function App() {
       </main>
       <Stats books={books} />
       <BookList books={books} deleteBook={deleteBook} />
+      <BookForm />
       <TasksDemo />
       <Footer />
     </>

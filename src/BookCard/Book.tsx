@@ -173,8 +173,6 @@ export function BookCard({ book, deleteBook }: BookCardProps) {
       )}
       
       <DeleteButton 
-        type="button" 
-        aria-label="Удалить книгу"
         onClick={() => deleteBook(book.id)}
       >
         🗑️

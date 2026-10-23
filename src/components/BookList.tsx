@@ -31,7 +31,7 @@ export function BookList({ books, deleteBook }: BookListProps) {
     <Section>
       <h2>Список книг</h2>
       {books.length === 0 ? (
-        <EmptyMessage>Eror 204: Книг нет!</EmptyMessage>
+        <EmptyMessage>Error 204: Книг нет!</EmptyMessage>
       ) : (
         <List>
           {books.map((book) => (
